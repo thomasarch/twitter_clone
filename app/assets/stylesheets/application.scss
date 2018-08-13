@@ -16,3 +16,183 @@
 
 @import 'bootstrap';
 @import 'font-awesome';
+
+body {
+	background-color: #e6ecf0;
+}
+
+.container {
+	overflow: auto;
+	padding: 10px 10px;
+}
+
+.main {
+	width: 588px;
+	float:left;
+	margin: 0 10px;
+}
+
+.tweet-box {
+	background-color: #e8f5fd;
+	position: relative;
+	padding: 10px 12px;
+	overflow: auto;
+	border-bottom: 1px solid #e6ecf0;
+}
+
+.tweet-box-img {
+	left: 28px;
+	position: absolute;
+	top: 13px;
+	width: 32px;
+	height: 32px;
+	background-color: white;
+	border-radius: 50%;
+}
+
+.tweet-box-input {
+	margin-left: 56px;
+	border: 1px solid #C6E7FB;
+	border-radius: 8px;
+	padding: 8px;
+	font-size: 14px;
+	width: auto;
+	background-color: white;
+}
+
+.clear-field {
+	border: none;
+	padding: 0;
+	width: 100%;
+	&:focus {
+		outline: none;
+	}
+}
+
+::-webkit-input-placeholder {
+	color: #1DA1F2;
+}
+
+.tweet {
+	background-color: #fff;
+	width: 588px;
+	padding: 9px 12px;
+	border-bottom: 1px solid #e6ecf0;
+	word-wrap: break-word;
+}
+
+.tweet .content {
+	margin-left: 58px;
+}
+
+.tweet .header {
+	display: flex;
+	font-size: 14px;
+}
+
+.account-group {
+	margin-right: 5px;
+	color: #14171a;
+
+	&:hover {
+		color: #1DA1F2;
+		text-decoration: none;
+	}
+}
+
+
+.avatar {
+	// width: 48px;
+	height: 48px;
+}
+
+.avatar-container {
+	border-radius: 50%;
+	margin-top: 3px;
+	margin-left: -58px;
+	// float: left;
+	position: absolute;
+	overflow: hidden;
+	width: 48px;
+	height: 48px;
+}
+
+.username {
+	color: #657786;
+}
+
+.tweet .time:before {
+	content: "\00b7";
+}
+
+.time {
+	color: #657786;
+}
+
+.dashboard {
+	float: left;
+}
+
+.profile-card {
+	width: 290px;
+	background-color: white;
+}
+
+.profile-card-background {
+	height: 95px;
+	background: linear-gradient(to left, #1DA1F2, #56b7ef)
+}
+
+.profile-avatar-container {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: -30px 0 0 8px;
+	background-color: white;
+}
+
+.profile-avatar {
+	height: 72px;
+}
+
+.profile-card-content {
+	position: relative;
+}
+
+.profile-card-user-fields {
+	position: relative;
+	top: -36px;
+	left: 90px;
+	width: 185px;
+	line-height: 18px;
+}
+
+.profile-card-user-fields a {
+	color: inherit;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.profile-card-user-fields .smaller {
+	color: #66757f;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.profile-card-stats {
+	display: flex;
+	padding: 16px;
+	font-size: 12px;
+	font-weight: bold;
+	justify-content: space-evenly;
+}
+
+.profile-card-stats a {
+	color: #66757f;
+}
+
+.stat-value {
+	font-size: 18px;
+	color: #1DA1F2;
+}

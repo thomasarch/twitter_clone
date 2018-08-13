@@ -24,6 +24,11 @@
   </div>
 
   <div class="field">
+    <p>upload profile pic</p>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
     <%= f.label :location %><br />
     <%= f.text_field :location %>
   </div>
@@ -39,7 +44,7 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  </div><br>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

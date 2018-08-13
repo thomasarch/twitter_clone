@@ -1,0 +1,77 @@
+
+<div class="dashboard">
+	<div class="profile-card">
+		<div class="profile-card-background"></div>
+		<div class="profile-card-content">
+			<div class="profile-avatar-container">			
+				<%= link_to show_user_path(id: current_user.id) do %>
+					<%= image_tag show_pic(current_user), class: "profile-avatar" %>
+				<% end %>
+			</div>
+			<div class="profile-card-user-fields">
+				<%= link_to current_user.name, show_user_path(id: current_user.id) %>
+				<%= link_to "@#{current_user.username}", show_user_path(id: current_user.id), class: 'smaller' %>
+			</div>
+			<div class="profile-card-stats">
+				<%= link_to show_user_path(id: current_user.id) do %>
+					Tweets<br>
+					<span class="stat-value"><%= @total_tweets %></span>
+				<% end %>
+				<%= link_to show_user_path(id: current_user.id) do %>
+					Following<br>
+					<span class="stat-value"><%= current_user.following.count %></span>
+				<% end %>
+				<%= link_to show_user_path(id: current_user.id) do %>
+					Followers<br>
+					<span class="stat-value"><%= @total_followers %></span>
+				<% end %>
+				
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<div class="main">
+	<div class="tweet-box container">
+		<%= image_tag show_pic(current_user), class: "tweet-box-img" %>
+
+		<% random_tweet %>
+		
+		
+		<%= form_for @tweet do |form| %>
+		  <% if @tweet.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+
+		      <ul>
+		      <% @tweet.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+		  <div class="field tweet-box-input">
+		    <%= form.text_field :message, placeholder: "What's happening?", :autocomplete => :off, class: "clear-field" %>
+		  </div>
+
+		  <div class="field">
+		    <%= form.hidden_field :user_id, value: current_user.id %>
+		  </div>
+
+		  <div class="actions">
+		    <%= form.submit "Tweet", class: "float-right btn btn-primary" %>
+		  </div>
+		<% end %>
+
+	</div>
+
+	<% @following_tweets.each do |tweet| %>
+		<!-- <p><%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %></p>
+		<p><%= tweet.message.html_safe %></p> -->
+		<%= render 'tweets/tweet', tweet: tweet %>
+	<% end %>
+
+</div>

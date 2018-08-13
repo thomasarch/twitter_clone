@@ -1,0 +1,30 @@
+<% if local_assigns[:tweet] %>
+	<% @tweet = tweet %>
+<% end %>
+
+<div class="container tweet">
+	<div class="content">
+		
+		<div class="header">
+			<%= link_to show_user_path(id: @tweet.user.id), class: "account-group" do %>
+				<div class="avatar-container">
+					<%= image_tag show_pic(@tweet.user), class: "avatar" %>
+				</div>
+				 
+				<strong class="fullname"><%= @tweet.user.name %></strong>
+				<span class="username">@<%= @tweet.user.username %></span>				
+			<% end %>
+			<div class="time">
+				<%= time_ago_in_words(@tweet.created_at).gsub('about','') %>
+			</div>
+
+		</div>	
+
+
+		<div class="tweet-text">
+			<p><%= @tweet.message.html_safe %></p>
+		</div>  
+
+
+	</div>
+</div>
