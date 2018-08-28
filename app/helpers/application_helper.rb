@@ -15,6 +15,18 @@ module ApplicationHelper
 
 		# Tweet.create!(message: Faker::TwinPeaks.quote)
 	end
+
+
+	def suggest
+	    @suggestions = []
+
+	    User.all.each do |user|
+	      unless current_user.following.include?(user.id.to_s)
+	        @suggestions.push(user)
+	        @suggestions = @suggestions.shuffle
+	      end
+	    end
+	end
 end
 
 

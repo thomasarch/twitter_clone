@@ -15,7 +15,8 @@
 				<span class="username">@<%= @tweet.user.username %></span>				
 			<% end %>
 			<div class="time">
-				<%= time_ago_in_words(@tweet.created_at).gsub('about','') %>
+				<%= time_ago_in_words(@tweet.created_at) if Time.now - tweet.created_at < 86400 %>
+				<%= @tweet.created_at.strftime('%b %e') if Time.now - tweet.created_at > 86400 %>
 			</div>
 
 		</div>	

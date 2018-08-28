@@ -17,11 +17,11 @@
 					Tweets<br>
 					<span class="stat-value"><%= @total_tweets %></span>
 				<% end %>
-				<%= link_to show_user_path(id: current_user.id) do %>
+				<%= link_to following_path(id: current_user.id) do %>
 					Following<br>
 					<span class="stat-value"><%= current_user.following.count %></span>
 				<% end %>
-				<%= link_to show_user_path(id: current_user.id) do %>
+				<%= link_to followers_path(id: current_user.id) do %>
 					Followers<br>
 					<span class="stat-value"><%= @total_followers %></span>
 				<% end %>
@@ -29,6 +29,8 @@
 			</div>
 		</div>
 	</div>
+
+	<% suggest %>
 
 </div>
 
