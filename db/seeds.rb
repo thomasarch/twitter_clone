@@ -13,38 +13,67 @@ def destroy_all
 	Tweet.destroy_all
 	TweetTag.destroy_all
 	Tag.destroy_all
+	FileUtils.rm_rf(Dir['app/assets/images/autopics/*'])
 	p 'everything is gone'
 end
 
 
-def nokopiri(character)
-	character = character.split(' ')
-	img = Nokogiri::HTML(open("https://www.google.com/search?tbm=isch&q=#{character[0]}+#{character[1]}")).css('img').attr('src').value
-	character = character.join
-	File.open("app/assets/images/autopics/#{character}.png",'wb'){ |f| f.write(open(img).read) }
+def create_thomas
+	User.create!(name: 'Default User', username: 'DefaultUser', bio: "It's me!", location: 'Here', email: "user@example.com", password: '111111')
+end
+
+
+def fill_character_array(number)
+	character_array = []
+
+	until character_array.count == number
+		character = Faker::TwinPeaks.character
+		character_array.include?(character) ? '' : character_array.push(character)
+	end	
+	p character_array
+end
+
+
+def create_characters(character_array)
+	character_array.each do |character|
+
+		p "Creating #{character}"
+
+		pic = scrape_image(character)
+		name = character
+		username = character.delete(' ')
+		
+		User.create!(
+			name: name, 
+			username: username, 
+			bio: Faker::TwinPeaks.quote, 
+			location: Faker::TwinPeaks.location, 
+			email: "#{username}@twinpeaks.com", 
+			password: "111111", 
+			autopic: "autopics/#{username}.png", 
+			bot: :true
+		)
+
+	end
+	p "finished!"
+end
+
+def scrape_image(character)
+	search_string = character.gsub(/ /, '+')
+	# character = character.split(' ')
+	
+	img = Nokogiri::HTML(open("https://www.google.com/search?tbm=isch&q=#{search_string}"))
+		.css('img').attr('src')
+		.value
+
+	filename = character.delete(' ')
+	File.open("app/assets/images/autopics/#{filename}.png",'wb'){ |f| f.write(open(img).read) }
 end
 
 destroy_all
 
-character_array = []
+create_thomas
 
-until character_array.count == 20
-	character = Faker::TwinPeaks.character
-	character_array.include?(character) ? '' : character_array.push(character)
-end
+character_array = fill_character_array(10)
 
-character_array.each do |character|
-
-	pic = nokopiri(character)
-	character = character.delete(' ')
-	User.create!(name: character, username: character, bio: Faker::TwinPeaks.quote, location: Faker::TwinPeaks.location, 
-		email: "#{character}@tp.com", password: "111111", autopic: "autopics/#{character}.png", bot: :true)
-
-end
-
-User.create!(name: 'Thomas DeFelice', username: 'ThomasArch', bio: "It's me!", location: 'Asheville', email: "thomasarch@gmail.com", password: '111111', autopic: "autopics/default.png")
-
-
-  
-
-
+create_characters(character_array)

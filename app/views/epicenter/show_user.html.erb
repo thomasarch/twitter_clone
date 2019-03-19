@@ -1,8 +1,11 @@
  
-
+<br><br><br>
 <div class="dashboard">	
+	<h4>Name:</h4>
 	<p><%= @user.name %></p>
+	<h4>Location:</h4>
 	<p><%= @user.location %></p>
+	<h4>About:</h4>
 	<p><%= @user.bio %></p>
 </div>
 
@@ -16,6 +19,8 @@
 
 <div class="main">
 	
+	<br><br><br>
+	<h3>Tweets:</h3>
 	<% @tweets.each do |tweet| %>
 		<!-- <p><%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %></p>
 		<p><%= tweet.message.html_safe %></p> -->

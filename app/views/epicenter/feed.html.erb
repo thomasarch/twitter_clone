@@ -73,7 +73,7 @@
 	<% @following_tweets.each do |tweet| %>
 		<!-- <p><%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %></p>
 		<p><%= tweet.message.html_safe %></p> -->
-		<%= render 'tweets/tweet', tweet: tweet %>
+		<%= render '/tweets/tweet', tweet: tweet %>
 	<% end %>
 
 </div>

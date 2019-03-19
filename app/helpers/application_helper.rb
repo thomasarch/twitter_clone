@@ -4,16 +4,15 @@ module ApplicationHelper
 	end
 
 	def show_pic(user)
-		user.avatar.url.nil? ? user.autopic : user.avatar
+		# user.avatar.url.nil? ? user.autopic : user.avatar
+		user.autopic.nil? ? 'default.png' : user.autopic
 	end
 
 	def random_tweet
-		# User.all.pluck(:id).sample
-		
-		tweeter = User.find(User.where(bot: true).pluck(:id).sample)
-		Tweet.create!(message: Faker::TwinPeaks.quote, user_id: tweeter.id)
-
-		# Tweet.create!(message: Faker::TwinPeaks.quote)
+		if User.where(bot: true).count > 0
+			tweeter = User.find(User.where(bot: true).pluck(:id).sample)
+			Tweet.create!(message: Faker::TwinPeaks.quote, user_id: tweeter.id)
+		end
 	end
 
 
