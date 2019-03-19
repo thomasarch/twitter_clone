@@ -1,24 +1,18 @@
-# README
+# Simple Twitter Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A basic twitter clone.
 
-Things you may want to cover:
+There is seed file that will populate the database with some bot users as well as a default user.
+To run the seed file type: 
+```
+rails db:seed
+```
+in the terminal
 
-* Ruby version
+after you will be able to login in as *'user@example.com'* with password *'111111'*
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run
+```
+rails s
+```
+and navigate to localhost:3000 in broswer to access the site
